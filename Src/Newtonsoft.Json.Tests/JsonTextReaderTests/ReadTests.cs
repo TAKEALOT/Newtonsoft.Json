@@ -1043,7 +1043,7 @@ namespace Newtonsoft.Json.Tests.JsonTextReaderTests
 
 #if !DNXCORE50
         [Test]
-        [Ignore]
+        [Ignore("")]
         public void ReadFromNetworkStream()
         {
             const int port = 11999;

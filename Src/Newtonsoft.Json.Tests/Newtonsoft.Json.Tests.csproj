@@ -214,6 +214,7 @@
     <Compile Include="Documentation\Samples\Xml\ConvertXmlToJsonForceArray.cs" />
     <Compile Include="Documentation\SerializationTests.cs" />
     <Compile Include="Documentation\TraceWriterTests.cs" />
+    <Compile Include="ExternalFileHelper.cs" />
     <Compile Include="FileSystemEntityModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

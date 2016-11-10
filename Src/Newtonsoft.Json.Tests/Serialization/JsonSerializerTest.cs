@@ -103,7 +103,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         [Test]
         public void DontCloseInputOnDeserializeError()
         {
-            using (var s = System.IO.File.OpenRead("large.json"))
+            using (var s = System.IO.File.OpenRead(ExternalFileHelper.GetFilePath("large.json")))
             {
                 try
                 {
@@ -1789,7 +1789,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             Assert.IsNotNull(deserialized.foo);
             Assert.AreEqual("value", deserialized.foo.bar);
         }
-        
+
         [Test]
         public void ConversionOperator()
         {

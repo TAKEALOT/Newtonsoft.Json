@@ -141,7 +141,7 @@ namespace Newtonsoft.Json.Tests
         {
             for (int i = 0; i < 10; i++)
             {
-                using (var fs = System.IO.File.OpenText("large.json"))
+                using (var fs = System.IO.File.OpenText(ExternalFileHelper.GetFilePath("large.json")))
                 using (JsonTextReader jsonTextReader = new JsonTextReader(fs))
                 {
                     while (jsonTextReader.Read())
@@ -194,7 +194,7 @@ namespace Newtonsoft.Json.Tests
         [Test]
         public void DeserializeLargeJson()
         {
-            var json = System.IO.File.ReadAllText("large.json");
+            var json = System.IO.File.ReadAllText(ExternalFileHelper.GetFilePath( "large.json"));
 
             BenchmarkDeserializeMethod<IList<RootObject>>(SerializeMethod.JsonNet, json, Iterations / 10, false);
         }
@@ -256,7 +256,7 @@ namespace Newtonsoft.Json.Tests
         public void SerializeSizeData()
         {
             Image image = new Image();
-            image.Data = System.IO.File.ReadAllBytes(@"bunny_pancake.jpg");
+            image.Data = System.IO.File.ReadAllBytes(ExternalFileHelper.GetFilePath( @"bunny_pancake.jpg"));
             image.FileName = "bunny_pancake.jpg";
             image.Author = "Hironori Akutagawa";
             image.Caption = "I have no idea what you are talking about so here's a bunny with a pancake on its head";
@@ -270,7 +270,7 @@ namespace Newtonsoft.Json.Tests
         public void ConvertXmlNode()
         {
             XmlDocument doc = new XmlDocument();
-            using (FileStream file = System.IO.File.OpenRead("large_sample.xml"))
+            using (FileStream file = System.IO.File.OpenRead(ExternalFileHelper.GetFilePath("large_sample.xml")))
             {
                 doc.Load(file);
             }
@@ -283,7 +283,7 @@ namespace Newtonsoft.Json.Tests
         public void ConvertXNode()
         {
             XDocument doc;
-            using (FileStream file = System.IO.File.OpenRead("large_sample.xml"))
+            using (FileStream file = System.IO.File.OpenRead(ExternalFileHelper.GetFilePath("large_sample.xml")))
             {
                 doc = XDocument.Load(file);
             }
