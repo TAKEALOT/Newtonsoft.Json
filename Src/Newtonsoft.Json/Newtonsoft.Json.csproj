@@ -127,6 +127,8 @@
     <Compile Include="Linq\JPropertyDescriptor.cs" />
     <Compile Include="Linq\JPropertyKeyedCollection.cs" />
     <Compile Include="Linq\JRaw.cs" />
+    <Compile Include="Linq\JsonPath\PropertyNameFilter.cs" />
+    <Compile Include="Linq\JsonPath\ParentFilter.cs" />
     <Compile Include="Linq\JsonPath\PathFilter.cs" />
     <Compile Include="Linq\JsonPath\QueryExpression.cs" />
     <Compile Include="Linq\JsonPath\QueryFilter.cs" />

@@ -153,6 +153,43 @@ namespace Newtonsoft.Json.Linq.JsonPath
                         followingIndexer = false;
                         followingDot = true;
                         break;
+                    case '^':
+                        if (_currentIndex > currentPartStartIndex)
+                        {
+                            string member = _expression.Substring(currentPartStartIndex, _currentIndex - currentPartStartIndex).TrimEnd();
+                            if (member == "*")
+                            {
+                                member = null;
+                            }
+
+                            filters.Add(CreatePathFilter(member, scan));
+                            scan = false;
+                        }
+                        filters.Add(NewParentFilter());
+                        _currentIndex++;
+                        currentPartStartIndex = _currentIndex;
+                        followingIndexer = false;
+                        followingDot = false;
+                        break;
+                    case '~':
+                        if (_currentIndex > currentPartStartIndex)
+                        {
+                            string member = _expression.Substring(currentPartStartIndex, _currentIndex - currentPartStartIndex).TrimEnd();
+                            if (member == "*")
+                            {
+                                member = null;
+                            }
+
+                            filters.Add(CreatePathFilter(member, scan));
+                            scan = false;
+                        }
+
+                        filters.Add(NewPropertyNameFilter());
+                        _currentIndex++;
+                        currentPartStartIndex = _currentIndex;
+                        followingIndexer = false;
+                        followingDot = false;
+                        break;
                     default:
                         if (query && (currentChar == '=' || currentChar == '<' || currentChar == '!' || currentChar == '>' || currentChar == '|' || currentChar == '&'))
                         {
@@ -198,6 +235,16 @@ namespace Newtonsoft.Json.Linq.JsonPath
         {
             PathFilter filter = (scan) ? (PathFilter)new ScanFilter {Name = member} : new FieldFilter {Name = member};
             return filter;
+        }
+
+        private PathFilter NewPropertyNameFilter()
+        {
+            return new PropertyNameFilter();
+        }
+
+        private PathFilter NewParentFilter()
+        {
+            return new ParentFilter();
         }
 
         private PathFilter ParseIndexer(char indexerOpenChar, bool scan)
